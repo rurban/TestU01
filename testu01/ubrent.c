@@ -712,22 +712,22 @@ unif01_Gen * ubrent_CreateXorgen64 (int r, int s, int a, int b, int c, int d,
 
    gen = util_Malloc (sizeof (unif01_Gen));
 
-   strcpy (name, "ubrent_CreateXorgen64:");
+   strncpy (name, "ubrent_CreateXorgen64:", LEN);
    addstr_Int (name, "   r = ", r);
    addstr_Int (name, ",  s = ", s);
    addstr_Int (name, ",  a = ", a);
    addstr_Int (name, ",  b = ", b);
    addstr_Int (name, ",  c = ", c);
    addstr_Int (name, ",  d = ", d);
-   strncat (name, ",  hasWeyl = ", 20);
+   strncat (name, ",  hasWeyl = ", LEN);
    if (hasWeyl)
-      strncat (name, "TRUE", 5);
+      strncat (name, "TRUE", LEN);
    else
-      strncat (name, "FALSE", 5);
+      strncat (name, "FALSE", LEN);
    addstr_ULONG (name, ",  seed = ", seed);
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
-   strncpy (gen->name, name, leng);
+   strcpy (gen->name, name);
 
    param = util_Malloc (sizeof (Xorgen64_param));
    state = util_Malloc (sizeof (Xorgen64_state));

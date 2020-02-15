@@ -83,7 +83,7 @@ void ftab_SetDesc (ftab_Table *T, char *Desc)
    if (T->Desc != NULL)
       T->Desc = util_Free (T->Desc);
    T->Desc = util_Calloc (len + 1, sizeof (char));
-   strncpy (T->Desc, Desc, (size_t) len);
+   strncpy (T->Desc, Desc, len);
    T->Desc[len] = '\0';
 }
 
@@ -198,7 +198,7 @@ static void PrintTexName (char *nam)
       return;
    len = strlen (name) + 1;
    name = util_Calloc (len, sizeof (char));
-   strncpy (name, nam, (size_t) len);
+   strncpy (name, nam, len);
 
    while ((p = strchr(name, '_'))) {
       *p = '\0';

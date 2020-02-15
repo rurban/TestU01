@@ -235,6 +235,7 @@ static double ChooseM1 (void *vpar, long N, long n)
       return m;
 }
 
+#define PARLEN 1
 
 /*-------------------------------------------------------------------------*/
 
@@ -252,7 +253,7 @@ fcho_Cho *fnpair_CreateM1 (int maxm)
    cho->Write = WriteM1;
    cho->Choose = ChooseM1;
    cho->name = util_Calloc (2, sizeof (char));
-   strncpy (cho->name, "m", 1);
+   strncpy (cho->name, "m", PARLEN);
    return cho;
 }
 

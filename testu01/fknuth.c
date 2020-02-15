@@ -365,9 +365,9 @@ void fknuth_Run1 (ffam_Fam *fam, fres_Cont *res, fcho_Cho *cho,
    Par[3] = Indep;
 
    if (Indep)
-      strcpy (Name, "fknuth_RunIndep1");
+     strncpy (Name, "fknuth_RunIndep1", 30);
    else
-      strcpy (Name, "fknuth_Run1");
+     strncpy (Name, "fknuth_Run1", 30);
 
    if (res == NULL) {
       localRes = TRUE;

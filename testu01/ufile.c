@@ -123,10 +123,9 @@ static double ReadText_U01 (void *junk1, void *junk2)
    } else {
       X1 = util_Free (X1);
       util_Fclose (f1);
-      sprintf (S, "%.0f numbers have been read.\n", NText);
-      strncat (S, "End-of-file detected.\n", (size_t) 25);
-      strncat (S, "Not enough numbers in file for these test parameters.",
-                 (size_t) 60);
+      snprintf (S, LEN, "%.0f numbers have been read.\n", NText);
+      strncat (S, "End-of-file detected.\n", LEN);
+      strncat (S, "Not enough numbers in file for these test parameters.", LEN);
       util_Error (S);
       return -1.0;
    }
@@ -154,11 +153,12 @@ unif01_Gen * ufile_CreateReadText (char *A, long dim)
 
    gen = util_Malloc (sizeof (unif01_Gen));
 
-   strncpy (name, "ufile_CreateReadText:   ", (size_t) LEN);
-   strncat (name, A, (size_t) (LEN - 30));
+   strncpy (name, "ufile_CreateReadText:   ", LEN);
+   strncat (name, A, LEN);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
-   strncpy (gen->name, name, leng);
+   strcpy (gen->name, name);
 
    f1 = util_Fopen (A, "r");
    Dim1 = util_Min (ARRAYDIM, dim);
@@ -241,10 +241,9 @@ static unsigned long ReadBin_Bits (void *vpar, void *vsta)
       X2 = util_Free (X2);
       util_Fclose (f2);
       f2 = NULL;
-      sprintf (S, "%.0f bits have been read.\n", NBin * 32.0);
-      strncat (S, "End-of-file detected.\n", (size_t) 25);
-      strncat (S, "Not enough bits in file for these test parameters.",
-               (size_t) 53);
+      snprintf (S, LEN, "%.0f bits have been read.\n", NBin * 32.0);
+      strncat (S, "End-of-file detected.\n", LEN);
+      strncat (S, "Not enough bits in file for these test parameters.", LEN);
       util_Error (S);
       return 0;
    }
@@ -279,11 +278,12 @@ unif01_Gen * ufile_CreateReadBin (char *A, long dim)
 
    gen = util_Malloc (sizeof (unif01_Gen));
 
-   strncpy (name, "ufile_CreateReadBin:   ", (size_t) LEN);
-   strncat (name, A, (size_t) LEN - 30);
+   strncpy (name, "ufile_CreateReadBin:   ", LEN);
+   strncat (name, A, LEN);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
-   strncpy (gen->name, name, leng);
+   strcpy (gen->name, name);
 
    f2 = util_Fopen (A, "rb");
 

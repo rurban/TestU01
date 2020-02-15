@@ -529,9 +529,9 @@ static void Ver_HamWeight (ffam_Fam *fam, fres_Cont *res,
       localRes = FALSE;
 
    if (ver == 2)
-     strcpy (Name, "fstring_HamWeight2");
+     strncpy (Name, "fstring_HamWeight2", 59);
    else
-     strcpy (Name, "fstring_HamWeight1");
+     strncpy (Name, "fstring_HamWeight1", 59);
 
    PrintHead (Name, fam, N, n, r, s, L, 0, Nr, j1, j2, jstep);
    fres_InitCont (fam, res, N, Nr, j1, j2, jstep, Name);

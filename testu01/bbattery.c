@@ -107,7 +107,7 @@ static void GetName (unif01_Gen * gen, char *genName)
    genName[LEN] = '\0';
    len1 = strcspn (gen->name, ":");
    len1 = util_Min (LEN, len1);
-   strncpy (genName, gen->name, (size_t) len1);
+   strncpy (genName, gen->name, LEN);
    genName[len1] = '\0';
    /* For Filters or Combined generators */
    p = strstr (&gen->name[1 + len1], "unif01");
@@ -115,12 +115,12 @@ static void GetName (unif01_Gen * gen, char *genName)
       len1 += 2;
       if (len1 >= LEN)
          return;
-      strcat (genName, ", ");
+      strncat (genName, ", ", LEN);
       len2 = strcspn (p, " \0");
       len2 = util_Min (LEN - len1, len2);
       if (len2 <= 0)
          return;
-      strncat (genName, p, (size_t) len2);
+      strncat (genName, p, LEN);
       len1 = strlen (genName);
       genName[len1] = '\0';
       p += len2;
@@ -256,64 +256,64 @@ static void GetPVal_Walk (long N, swalk_Res * res, int *pj, char *mess, int j2)
    if (N == 1) {
       bbattery_pVal[++j] = res->H[0]->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 H");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 H", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->M[0]->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 M");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 M", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->J[0]->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 J");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 J", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->R[0]->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 R");
+      strncpy (CharTemp, "RandomWalk1 R", LEN);
       strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->C[0]->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 C");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 C", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
    } else {
       bbattery_pVal[++j] = res->H[0]->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 H");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 H", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->M[0]->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 M");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 M", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->J[0]->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 J");
-      strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (CharTemp, "RandomWalk1 J", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->R[0]->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 R");
+      strncpy (CharTemp, "RandomWalk1 R", LEN);
       strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->C[0]->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "RandomWalk1 C");
+      strncpy (CharTemp, "RandomWalk1 C", LEN);
       strncat (CharTemp, mess, (size_t) len);
-      strncpy (bbattery_TestNames[j], CharTemp, (size_t) LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
    }
 
    *pj = j;
@@ -334,53 +334,53 @@ static void GetPVal_CPairs (long N, snpair_Res * res, int *pj, char *mess,
    if (N == 1) {
       bbattery_pVal[++j] = res->pVal[snpair_NP];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs NP");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs NP", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->pVal[snpair_mNP];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs mNP");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs mNP", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
    } else {
       bbattery_pVal[++j] = res->pVal[snpair_NP];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs NP");
+      strncpy (CharTemp, "ClosePairs NP", LEN);
       strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->pVal[snpair_mNP];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs mNP");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs mNP", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->pVal[snpair_mNP1];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs mNP1");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs mNP1", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->pVal[snpair_mNP2];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs mNP2");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs mNP2", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       bbattery_pVal[++j] = res->pVal[snpair_NJumps];
       TestNumber[j] = j2;
-      strcpy (CharTemp, "ClosePairs NJumps");
-      strncat (CharTemp, mess, (size_t) len);
-      strcpy (bbattery_TestNames[j], CharTemp);
+      strncpy (CharTemp, "ClosePairs NJumps", LEN);
+      strncat (CharTemp, mess, LEN);
+      strncpy (bbattery_TestNames[j], CharTemp, LEN);
 
       if (snpair_mNP2S_Flag) {
          bbattery_pVal[++j] = res->pVal[snpair_mNP2S];
          TestNumber[j] = j2;
-         strcpy (CharTemp, "ClosePairs mNP2S");
-         strncat (CharTemp, mess, (size_t) len);
-         strcpy (bbattery_TestNames[j], CharTemp);
+         strncpy (CharTemp, "ClosePairs mNP2S", LEN);
+         strncat (CharTemp, mess, LEN);
+         strncpy (bbattery_TestNames[j], CharTemp, LEN);
       }
    }
 
@@ -460,7 +460,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
 #endif
       bbattery_pVal[++j] = res1->pVal2;
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "BirthdaySpacings");
+      strncpy (bbattery_TestNames[j], "BirthdaySpacings", LEN);
    }
    sres_DeletePoisson (res1);
 
@@ -472,7 +472,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sknuth_Collision (gen, res3, 1, 5 * MILLION, 0, 65536, 2);
       bbattery_pVal[++j] = res3->Pois->pVal2;
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "Collision");
+      strncpy (bbattery_TestNames[j], "Collision", LEN);
    }
    sknuth_DeleteRes2 (res3);
 
@@ -484,7 +484,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sknuth_Gap (gen, res2, 1, MILLION / 5, 22, 0.0, .00390625);
       bbattery_pVal[++j] = res2->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "Gap");
+      strncpy (bbattery_TestNames[j], "Gap", LEN);
    }
 
    ++j2;
@@ -494,7 +494,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sknuth_SimpPoker (gen, res2, 1, 2 * MILLION / 5, 24, 64, 64);
       bbattery_pVal[++j] = res2->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "SimpPoker");
+      strncpy (bbattery_TestNames[j], "SimpPoker", LEN);
    }
 
    ++j2;
@@ -504,7 +504,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sknuth_CouponCollector (gen, res2, 1, MILLION / 2, 26, 16);
       bbattery_pVal[++j] = res2->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "CouponCollector");
+      strncpy (bbattery_TestNames[j], "CouponCollector", LEN);
    }
 
    if (fileFlag)
@@ -515,10 +515,10 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sknuth_MaxOft (gen, res5, 1, 2 * MILLION, 0, MILLION / 10, 6);
       bbattery_pVal[++j] = res5->Chi->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "MaxOft");
+      strncpy (bbattery_TestNames[j], "MaxOft", LEN);
       bbattery_pVal[++j] = res5->Bas->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "MaxOft AD");
+      strncpy (bbattery_TestNames[j], "MaxOft AD", LEN);
    }
    sknuth_DeleteRes1 (res5);
 
@@ -529,7 +529,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       svaria_WeightDistrib (gen, res2, 1, MILLION / 5, 27, 256, 0.0, 0.125);
       bbattery_pVal[++j] = res2->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "WeightDistrib");
+      strncpy (bbattery_TestNames[j], "WeightDistrib", LEN);
    }
 
    ++j2;
@@ -539,7 +539,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       smarsa_MatrixRank (gen, res2, 1, 20 * THOUSAND, 20, 10, 60, 60);
       bbattery_pVal[++j] = res2->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "MatrixRank");
+      strncpy (bbattery_TestNames[j], "MatrixRank", LEN);
    }
    sres_DeleteChi2 (res2);
 
@@ -551,7 +551,7 @@ static void SmallCrush (unif01_Gen * gen, char *filename, int Rep[])
       sstring_HammingIndep (gen, res6, 1, MILLION/2, 20, 10, 300, 0);
       bbattery_pVal[++j] = res6->Bas->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "HammingIndep");
+      strncpy (bbattery_TestNames[j], "HammingIndep", LEN);
    }
    sstring_DeleteRes (res6);
 
@@ -647,7 +647,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_SerialOver (gen, res, 1, 500 * MILLION, 0, 4096, 2);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SerialOver, t = 2");
+         strncpy (bbattery_TestNames[j], "SerialOver, t = 2", LEN);
       }
 
       ++j2;
@@ -655,7 +655,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_SerialOver (gen, res, 1, 300 * MILLION, 0, 64, 4);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SerialOver, t = 4");
+         strncpy (bbattery_TestNames[j], "SerialOver, t = 4", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -667,7 +667,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 0, 1024 * 1024, 2);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 2");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 2", LEN);
       }
 
       ++j2;
@@ -675,7 +675,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 10, 1024 * 1024, 2);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 2");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 2", LEN);
       }
 
       ++j2;
@@ -683,7 +683,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 0, 1024, 4);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 4");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 4", LEN);
       }
 
       ++j2;
@@ -691,7 +691,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 20, 1024, 4);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 4");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 4", LEN);
       }
 
       ++j2;
@@ -699,7 +699,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 0, 32, 8);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 8");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 8", LEN);
       }
 
       ++j2;
@@ -707,7 +707,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 25, 32, 8);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 8");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 8", LEN);
       }
 
       ++j2;
@@ -715,7 +715,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 0, 4, 20);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 20");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 20", LEN);
       }
 
       ++j2;
@@ -723,7 +723,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, res, 10, 10 * MILLION, 28, 4, 20);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 20");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 20", LEN);
       }
       smarsa_DeleteRes (res);
    }
@@ -744,7 +744,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
 #endif
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2", LEN);
       }
 
       ++j2;
@@ -753,7 +753,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3", LEN);
       }
 
       ++j2;
@@ -761,7 +761,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 5, 20 * MILLION, 0, 65536, 4, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4", LEN);
       }
 
       ++j2;
@@ -769,7 +769,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 3, 20 * MILLION, 0, 512, 7, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7", LEN);
       }
 
       ++j2;
@@ -777,7 +777,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 3, 20 * MILLION, 7, 512, 7, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7", LEN);
       }
 
       ++j2;
@@ -785,7 +785,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 3, 20 * MILLION, 14, 256, 8, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8", LEN);
       }
 
       ++j2;
@@ -793,7 +793,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 3, 20 * MILLION, 22, 256, 8, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8", LEN);
       }
 
 #else
@@ -803,7 +803,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             67108864, 2, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2", LEN);
       }
 
       ++j2;
@@ -812,7 +812,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             3, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3", LEN);
       }
 
       ++j2;
@@ -821,7 +821,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             1024 * 8, 4, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4", LEN);
       }
 
       ++j2;
@@ -830,7 +830,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -839,7 +839,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -848,7 +848,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -857,7 +857,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 #endif
 
@@ -893,7 +893,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          snpair_ClosePairsBitMatch (gen, res, 4, 4 * MILLION, 0, 2);
          bbattery_pVal[++j] = res->pVal[snpair_BM];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 2");
+         strncpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 2", LEN);
       }
 
       ++j2;
@@ -901,7 +901,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          snpair_ClosePairsBitMatch (gen, res, 2, 4 * MILLION, 0, 4);
          bbattery_pVal[++j] = res->pVal[snpair_BM];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 4");
+         strncpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 4", LEN);
       }
       snpair_DeleteRes (res);
       snpair_mNP2S_Flag = flag;
@@ -915,7 +915,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 40 * MILLION, 0, 16, 16);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, d = 16");
+         strncpy (bbattery_TestNames[j], "SimpPoker, d = 16", LEN);
       }
 
       ++j2;
@@ -923,7 +923,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 40 * MILLION, 26, 16, 16);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, d = 16");
+         strncpy (bbattery_TestNames[j], "SimpPoker, d = 16", LEN);
       }
 
       ++j2;
@@ -931,7 +931,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 10 * MILLION, 0, 64, 64);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, d = 64");
+         strncpy (bbattery_TestNames[j], "SimpPoker, d = 64", LEN);
       }
 
       ++j2;
@@ -939,7 +939,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 10 * MILLION, 24, 64, 64);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, d = 64");
+         strncpy (bbattery_TestNames[j], "SimpPoker, d = 64", LEN);
       }
 
       ++j2;
@@ -947,7 +947,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 40 * MILLION, 0, 4);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, d = 4");
+         strncpy (bbattery_TestNames[j], "CouponCollector, d = 4", LEN);
       }
 
       ++j2;
@@ -955,7 +955,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 40 * MILLION, 28, 4);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, d = 4");
+         strncpy (bbattery_TestNames[j], "CouponCollector, d = 4", LEN);
       }
 
       ++j2;
@@ -963,7 +963,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 10 * MILLION, 0, 16);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, d = 16");
+         strncpy (bbattery_TestNames[j], "CouponCollector, d = 16", LEN);
       }
 
       ++j2;
@@ -971,7 +971,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 10 * MILLION, 26, 16);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, d = 16");
+         strncpy (bbattery_TestNames[j], "CouponCollector, d = 16", LEN);
       }
 
       ++j2;
@@ -979,7 +979,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 100 * MILLION, 0, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 0");
+         strncpy (bbattery_TestNames[j], "Gap, r = 0", LEN);
       }
 
       ++j2;
@@ -987,7 +987,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 100 * MILLION, 27, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 27");
+         strncpy (bbattery_TestNames[j], "Gap, r = 27", LEN);
       }
 
       ++j2;
@@ -995,7 +995,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 5 * MILLION, 0, 0.0, 1.0/256.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 0");
+         strncpy (bbattery_TestNames[j], "Gap, r = 0", LEN);
       }
 
       ++j2;
@@ -1003,7 +1003,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 5 * MILLION, 22, 0.0, 1.0/256.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 22");
+         strncpy (bbattery_TestNames[j], "Gap, r = 22", LEN);
       }
 
       ++j2;
@@ -1011,7 +1011,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Run (gen, res, 1, 500 * MILLION, 0, TRUE);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of U01, r = 0");
+         strncpy (bbattery_TestNames[j], "Run of U01, r = 0", LEN);
       }
 
       ++j2;
@@ -1019,7 +1019,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Run (gen, res, 1, 500 * MILLION, 15, FALSE);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of U01, r = 15");
+         strncpy (bbattery_TestNames[j], "Run of U01, r = 15", LEN);
       }
 
       ++j2;
@@ -1027,7 +1027,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, 50 * MILLION, 0, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, r = 0");
+         strncpy (bbattery_TestNames[j], "Permutation, r = 0", LEN);
       }
 
       ++j2;
@@ -1035,7 +1035,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, 50 * MILLION, 15, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, r = 15");
+         strncpy (bbattery_TestNames[j], "Permutation, r = 15", LEN);
       }
       sres_DeleteChi2 (res);
    }
@@ -1047,7 +1047,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CollisionPermut (gen, res, 5, 10 * MILLION, 0, 13);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionPermut, r = 0");
+         strncpy (bbattery_TestNames[j], "CollisionPermut, r = 0", LEN);
       }
 
       ++j2;
@@ -1055,7 +1055,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_CollisionPermut (gen, res, 5, 10 * MILLION, 15, 13);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionPermut, r = 15");
+         strncpy (bbattery_TestNames[j], "CollisionPermut, r = 15", LEN);
       }
       sknuth_DeleteRes2 (res);
    }
@@ -1068,10 +1068,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 10, 10 * MILLION, 0, MILLION / 10, 5);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 5");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 5", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 5");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 5", LEN);
       }
 
       ++j2;
@@ -1079,10 +1079,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 5, 10 * MILLION, 0, MILLION / 10, 10);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 10");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 10", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 10");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 10", LEN);
       }
 
       ++j2;
@@ -1090,10 +1090,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 1, 10 * MILLION, 0, MILLION / 10, 20);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 20");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 20", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 20");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 20", LEN);
       }
 
       ++j2;
@@ -1101,10 +1101,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 1, 10 * MILLION, 0, MILLION / 10, 30);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 30");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 30", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 30");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 30", LEN);
       }
       sknuth_DeleteRes1 (res);
    }
@@ -1117,7 +1117,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_SampleProd (gen, res, 1, 10 * MILLION, 0, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleProd, t = 10");
+         strncpy (bbattery_TestNames[j], "SampleProd, t = 10", LEN);
       }
 
       ++j2;
@@ -1125,7 +1125,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_SampleProd (gen, res, 1, 10 * MILLION, 0, 30);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleProd, t = 30");
+         strncpy (bbattery_TestNames[j], "SampleProd, t = 30", LEN);
       }
 
       ++j2;
@@ -1133,7 +1133,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_SampleMean (gen, res, 10*MILLION, 20, 0);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleMean");
+         strncpy (bbattery_TestNames[j], "SampleMean", LEN);
       }
 
       ++j2;
@@ -1141,7 +1141,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_SampleCorr (gen, res, 1, 500 * MILLION, 0, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleCorr");
+         strncpy (bbattery_TestNames[j], "SampleCorr", LEN);
       }
 
       ++j2;
@@ -1150,7 +1150,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             r, 30, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AppearanceSpacings, r = 0");
+         strncpy (bbattery_TestNames[j], "AppearanceSpacings, r = 0", LEN);
       }
 
       ++j2;
@@ -1159,7 +1159,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             20, 10, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AppearanceSpacings, r = 20");
+         strncpy (bbattery_TestNames[j], "AppearanceSpacings, r = 20", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -1172,7 +1172,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 2 * MILLION, 0, 256, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 0");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 0", LEN);
       }
 
       ++j2;
@@ -1180,7 +1180,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 2 * MILLION, 8, 256, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 8");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 8", LEN);
       }
 
       ++j2;
@@ -1188,7 +1188,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 2 * MILLION, 16, 256, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 16");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 16", LEN);
       }
 
       ++j2;
@@ -1196,7 +1196,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 2 * MILLION, 24, 256, 0.0, 0.125);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 24");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 24", LEN);
       }
 
       ++j2;
@@ -1204,7 +1204,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          svaria_SumCollector (gen, res, 1, 20 * MILLION, 0, 10.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SumCollector");
+         strncpy (bbattery_TestNames[j], "SumCollector", LEN);
       }
 
       ++j2;
@@ -1212,7 +1212,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, MILLION, r, s, 2 * s, 2 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 60 x 60");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 60 x 60", LEN);
       }
 
       ++j2;
@@ -1220,7 +1220,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, MILLION, 20, 10, 2 * s, 2 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 60 x 60");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 60 x 60", LEN);
       }
 
       ++j2;
@@ -1228,7 +1228,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 50 * THOUSAND, r, s, 10 * s, 10 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 300 x 300");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 300 x 300", LEN);
       }
 
       ++j2;
@@ -1237,7 +1237,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
             10 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 300 x 300");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 300 x 300", LEN);
       }
 
       ++j2;
@@ -1245,7 +1245,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 2 * THOUSAND, r, s, 40 * s, 40 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 1200 x 1200");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 1200 x 1200", LEN);
       }
 
       ++j2;
@@ -1253,7 +1253,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 2 * THOUSAND, 20, 10, 40 * s, 40 * s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, 1200 x 1200");
+         strncpy (bbattery_TestNames[j], "MatrixRank, 1200 x 1200", LEN);
       }
 
       ++j2;
@@ -1261,7 +1261,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_Savir2 (gen, res, 1, 20 * MILLION, 0, 1024*1024, 30);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Savir2");
+         strncpy (bbattery_TestNames[j], "Savir2", LEN);
       }
       sres_DeleteChi2 (res);
 
@@ -1271,7 +1271,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_GCD (gen, res2, 1, 100 * MILLION, 0, 30);
          bbattery_pVal[++j] = res2->GCD->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "GCD, r = 0");
+         strncpy (bbattery_TestNames[j], "GCD, r = 0", LEN);
       }
 
       ++j2;
@@ -1279,7 +1279,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          smarsa_GCD (gen, res2, 1, 40 * MILLION, 10, 20);
          bbattery_pVal[++j] = res2->GCD->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "GCD, r = 10");
+         strncpy (bbattery_TestNames[j], "GCD, r = 10", LEN);
       }
       smarsa_DeleteRes2 (res2);
    }
@@ -1331,10 +1331,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          scomp_LinearComp (gen, res, 1, 120 * THOUSAND, r, 1);
          bbattery_pVal[++j] = res->JumpNum->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 0");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 0", LEN);
          bbattery_pVal[++j] = res->JumpSize->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 0");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 0", LEN);
       }
 
       ++j2;
@@ -1342,10 +1342,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          scomp_LinearComp (gen, res, 1, 120 * THOUSAND, 29, 1);
          bbattery_pVal[++j] = res->JumpNum->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 29");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 29", LEN);
          bbattery_pVal[++j] = res->JumpSize->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 29");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 29", LEN);
       }
       scomp_DeleteRes (res);
    }
@@ -1357,7 +1357,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          scomp_LempelZiv (gen, res, 10, 25, r, s);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LempelZiv");
+         strncpy (bbattery_TestNames[j], "LempelZiv", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -1370,7 +1370,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sspectral_Fourier3 (gen, res, 50 * THOUSAND, 14, r, s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier3, r = 0");
+         strncpy (bbattery_TestNames[j], "Fourier3, r = 0", LEN);
       }
 
       ++j2;
@@ -1378,7 +1378,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sspectral_Fourier3 (gen, res, 50 * THOUSAND, 14, 20, 10);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier3, r = 20");
+         strncpy (bbattery_TestNames[j], "Fourier3, r = 20", LEN);
       }
       sspectral_DeleteRes (res);
    }
@@ -1390,10 +1390,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_LongestHeadRun (gen, res, 1, 1000, r, s, 20 + 10 * MILLION);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 0");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 0", LEN);
          bbattery_pVal[++j] = res->Disc->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 0");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 0", LEN);
       }
 
       ++j2;
@@ -1401,10 +1401,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_LongestHeadRun (gen, res, 1, 300, 20, 10, 20 + 10 * MILLION);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 20");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 20", LEN);
          bbattery_pVal[++j] = res->Disc->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 20");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 20", LEN);
       }
       sstring_DeleteRes2 (res);
    }
@@ -1416,7 +1416,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_PeriodsInStrings (gen, res, 1, 300 * MILLION, r, s);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "PeriodsInStrings, r = 0");
+         strncpy (bbattery_TestNames[j], "PeriodsInStrings, r = 0", LEN);
       }
 
       ++j2;
@@ -1424,7 +1424,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_PeriodsInStrings (gen, res, 1, 300 * MILLION, 15, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "PeriodsInStrings, r = 15");
+         strncpy (bbattery_TestNames[j], "PeriodsInStrings, r = 15", LEN);
       }
       sres_DeleteChi2 (res);
    }
@@ -1436,7 +1436,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingWeight2 (gen, res, 100, 100 * MILLION, r, s, MILLION);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingWeight2, r = 0");
+         strncpy (bbattery_TestNames[j], "HammingWeight2, r = 0", LEN);
       }
 
       ++j2;
@@ -1444,7 +1444,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingWeight2 (gen, res, 30, 100 * MILLION, 20, 10, MILLION);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingWeight2, r = 20");
+         strncpy (bbattery_TestNames[j], "HammingWeight2, r = 20", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -1458,7 +1458,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, 500 * MILLION, r, s, s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 30");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 30", LEN);
       }
 
       ++j2;
@@ -1466,7 +1466,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, 50 * MILLION, r, s, 10 * s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 300");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 300", LEN);
       }
 
       ++j2;
@@ -1474,7 +1474,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, 10 * MILLION, r, s, 40 * s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 1200");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 1200", LEN);
       }
 
       ++j2;
@@ -1482,7 +1482,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 300 * MILLION, r, s, s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 30");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 30", LEN);
       }
 
       ++j2;
@@ -1490,7 +1490,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 100 * MILLION, 20, 10, s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 30");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 30", LEN);
       }
 
       ++j2;
@@ -1498,7 +1498,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 30 * MILLION, r, s, 10 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 300");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 300", LEN);
       }
 
       ++j2;
@@ -1506,7 +1506,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 10 * MILLION, 20, 10, 10 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 300");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 300", LEN);
       }
 
       ++j2;
@@ -1514,7 +1514,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 10 * MILLION, r, s, 40 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 1200");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 1200", LEN);
       }
 
       ++j2;
@@ -1522,7 +1522,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, MILLION, 20, 10, 40 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L = 1200");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L = 1200", LEN);
       }
       sstring_DeleteRes (res);
    }
@@ -1534,10 +1534,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_Run (gen, res, 1, 1 * BILLION, r, s);
          bbattery_pVal[++j] = res->NRuns->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 0");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 0", LEN);
          bbattery_pVal[++j] = res->NBits->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 0");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 0", LEN);
       }
 
       ++j2;
@@ -1545,10 +1545,10 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_Run (gen, res, 1, 1 * BILLION, 20, 10);
          bbattery_pVal[++j] = res->NRuns->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 20");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 20", LEN);
          bbattery_pVal[++j] = res->NBits->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 20");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 20", LEN);
       }
       sstring_DeleteRes3 (res);
    }
@@ -1560,7 +1560,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 30 + BILLION, r, s, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d = 1");
+         strncpy (bbattery_TestNames[j], "AutoCor, d = 1", LEN);
       }
 
       ++j2;
@@ -1568,7 +1568,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 5, 1 + BILLION, 20, 10, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d = 1");
+         strncpy (bbattery_TestNames[j], "AutoCor, d = 1", LEN);
       }
 
       ++j2;
@@ -1576,7 +1576,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 31 + BILLION, r, s, s);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d = 30");
+         strncpy (bbattery_TestNames[j], "AutoCor, d = 30", LEN);
       }
 
       ++j2;
@@ -1585,7 +1585,7 @@ static void Crush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 5, 11 + BILLION, 20, 10, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d = 10");
+         strncpy (bbattery_TestNames[j], "AutoCor, d = 10", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -1653,7 +1653,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_SerialOver (gen, res, 1, BILLION, 0, 256, 3);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SerialOver, r = 0");
+         strncpy (bbattery_TestNames[j], "SerialOver, r = 0", LEN);
       }
 
       ++j2;
@@ -1661,7 +1661,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_SerialOver (gen, res, 1, BILLION, 22, 256, 3);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SerialOver, r = 22");
+         strncpy (bbattery_TestNames[j], "SerialOver, r = 22", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -1673,7 +1673,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 0, 1024*1024*2, 2);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 2");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 2", LEN);
       }
 
       ++j2;
@@ -1681,7 +1681,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 9, 1024*1024*2, 2);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 2");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 2", LEN);
       }
 
       ++j2;
@@ -1689,7 +1689,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 0, 1024*16, 3);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 3");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 3", LEN);
       }
 
       ++j2;
@@ -1697,7 +1697,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 16, 1024*16, 3);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 3");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 3", LEN);
       }
 
       ++j2;
@@ -1705,7 +1705,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 0, 64, 7);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 7");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 7", LEN);
       }
 
       ++j2;
@@ -1713,7 +1713,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 24, 64, 7);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 7");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 7", LEN);
       }
 
       ++j2;
@@ -1721,7 +1721,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 0, 8, 14);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 14");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 14", LEN);
       }
 
       ++j2;
@@ -1729,7 +1729,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 27, 8, 14);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 14");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 14", LEN);
       }
 
       ++j2;
@@ -1737,7 +1737,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 0, 4, 21);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 21");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 21", LEN);
       }
 
       ++j2;
@@ -1745,7 +1745,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_CollisionOver (gen, resm, 30, 20 * MILLION, 28, 4, 21);
          bbattery_pVal[++j] = resm->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionOver, t = 21");
+         strncpy (bbattery_TestNames[j], "CollisionOver, t = 21", LEN);
       }
       smarsa_DeleteRes (resm);
    }
@@ -1765,7 +1765,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
 #endif
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2", LEN);
       }
 
       ++j2;
@@ -1774,7 +1774,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 3", LEN);
       }
 
       ++j2;
@@ -1782,7 +1782,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 30 * MILLION, 14, 65536, 4, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4", LEN);
       }
 
       ++j2;
@@ -1790,7 +1790,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 20 * MILLION, 0, 512, 7, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7", LEN);
       }
 
       ++j2;
@@ -1798,7 +1798,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 20 * MILLION, 7, 512, 7, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 7", LEN);
       }
 
       ++j2;
@@ -1806,7 +1806,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 30 * MILLION, 14, 256, 8, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8", LEN);
       }
 
       ++j2;
@@ -1814,7 +1814,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 30 * MILLION, 22, 256, 8, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 8", LEN);
       }
 
       ++j2;
@@ -1822,7 +1822,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 30 * MILLION, 0, 16, 16, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 16");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 16", LEN);
       }
 
       ++j2;
@@ -1830,7 +1830,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_BirthdaySpacings (gen, res, 20, 30 * MILLION, 26, 16, 16, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 16");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 16", LEN);
       }
 
 #else
@@ -1840,7 +1840,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             67108864, 2, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 2", LEN);
       }
 
       ++j2;
@@ -1849,7 +1849,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             1024 * 8, 4, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4", LEN);
       }
 
       ++j2;
@@ -1858,7 +1858,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             1024 * 8, 4, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 4", LEN);
       }
 
       ++j2;
@@ -1867,7 +1867,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -1876,7 +1876,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -1885,7 +1885,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             16, 13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -1894,7 +1894,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             16, 13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -1903,7 +1903,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             16, 13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 
       ++j2;
@@ -1912,7 +1912,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             16, 13, 1);
          bbattery_pVal[++j] = res->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings, t = 13", LEN);
       }
 #endif
       sres_DeletePoisson (res);
@@ -1958,7 +1958,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 400 * MILLION, 0, 8, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, r = 0");
+         strncpy (bbattery_TestNames[j], "SimpPoker, r = 0", LEN);
       }
 
       ++j2;
@@ -1966,7 +1966,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 400 * MILLION, 27, 8, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, r = 27");
+         strncpy (bbattery_TestNames[j], "SimpPoker, r = 27", LEN);
       }
 
       ++j2;
@@ -1974,7 +1974,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 100 * MILLION, 0, 32, 32);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, r = 0");
+         strncpy (bbattery_TestNames[j], "SimpPoker, r = 0", LEN);
       }
 
       ++j2;
@@ -1982,7 +1982,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_SimpPoker (gen, res, 1, 100 * MILLION, 25, 32, 32);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SimpPoker, r = 25");
+         strncpy (bbattery_TestNames[j], "SimpPoker, r = 25", LEN);
       }
 
       ++j2;
@@ -1990,7 +1990,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 200 * MILLION, 0, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, r = 0");
+         strncpy (bbattery_TestNames[j], "CouponCollector, r = 0", LEN);
       }
 
       ++j2;
@@ -1998,7 +1998,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 200 * MILLION, 10, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, r = 10");
+         strncpy (bbattery_TestNames[j], "CouponCollector, r = 10", LEN);
       }
 
       ++j2;
@@ -2006,7 +2006,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 200 * MILLION, 20, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, r = 20");
+         strncpy (bbattery_TestNames[j], "CouponCollector, r = 20", LEN);
       }
 
       ++j2;
@@ -2014,7 +2014,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CouponCollector (gen, res, 1, 200 * MILLION, 27, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CouponCollector, r = 27");
+         strncpy (bbattery_TestNames[j], "CouponCollector, r = 27", LEN);
       }
 
       ++j2;
@@ -2022,7 +2022,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, BILLION/2, 0, 0.0, 1.0/16.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 0");
+         strncpy (bbattery_TestNames[j], "Gap, r = 0", LEN);
       }
 
       ++j2;
@@ -2030,7 +2030,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 300*MILLION, 25, 0.0, 1.0/32.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 25");
+         strncpy (bbattery_TestNames[j], "Gap, r = 25", LEN);
       }
 
       ++j2;
@@ -2038,7 +2038,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, BILLION/10, 0, 0.0, 1.0/128.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 0");
+         strncpy (bbattery_TestNames[j], "Gap, r = 0", LEN);
       }
 
       ++j2;
@@ -2046,7 +2046,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Gap (gen, res, 1, 10*MILLION, 20, 0.0, 1.0/1024.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Gap, r = 20");
+         strncpy (bbattery_TestNames[j], "Gap, r = 20", LEN);
       }
 
       ++j2;
@@ -2054,7 +2054,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Run (gen, res, 5, BILLION, 0, FALSE);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run, r = 0");
+         strncpy (bbattery_TestNames[j], "Run, r = 0", LEN);
       }
 
       ++j2;
@@ -2062,7 +2062,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Run (gen, res, 10, BILLION, 15, TRUE);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run, r = 15");
+         strncpy (bbattery_TestNames[j], "Run, r = 15", LEN);
       }
 
       ++j2;
@@ -2070,7 +2070,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, BILLION, 5, 3);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, t = 3" );
+         strncpy (bbattery_TestNames[j], "Permutation, t = 3", LEN);
       }
 
       ++j2;
@@ -2078,7 +2078,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, BILLION, 5, 5);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, t = 5");
+         strncpy (bbattery_TestNames[j], "Permutation, t = 5", LEN);
       }
 
       ++j2;
@@ -2086,7 +2086,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, BILLION/2, 5, 7);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, t = 7");
+         strncpy (bbattery_TestNames[j], "Permutation, t = 7", LEN);
       }
 
       ++j2;
@@ -2094,7 +2094,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_Permutation (gen, res, 1, BILLION/2, 10, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Permutation, t = 10");
+         strncpy (bbattery_TestNames[j], "Permutation, t = 10", LEN);
       }
       sres_DeleteChi2 (res);
    }
@@ -2106,7 +2106,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CollisionPermut (gen, res, 20, 20 * MILLION, 0, 14);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionPermut, r = 0");
+         strncpy (bbattery_TestNames[j], "CollisionPermut, r = 0", LEN);
       }
 
       ++j2;
@@ -2114,7 +2114,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_CollisionPermut (gen, res, 20, 20 * MILLION, 10, 14);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "CollisionPermut, r = 10");
+         strncpy (bbattery_TestNames[j], "CollisionPermut, r = 10", LEN);
       }
       sknuth_DeleteRes2 (res);
    }
@@ -2126,10 +2126,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 40, 10 * MILLION, 0, MILLION / 10, 8);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 8");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 8", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 8");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 8", LEN);
       }
 
       ++j2;
@@ -2137,10 +2137,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 30, 10 * MILLION, 0, MILLION / 10, 16);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 16");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 16", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 16");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 16", LEN);
       }
 
       ++j2;
@@ -2148,10 +2148,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 20, 10 * MILLION, 0, MILLION / 10, 24);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 24");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 24", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 24");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 24", LEN);
       }
 
       ++j2;
@@ -2159,10 +2159,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sknuth_MaxOft (gen, res, 20, 10 * MILLION, 0, MILLION / 10, 32);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft, t = 32");
+         strncpy (bbattery_TestNames[j], "MaxOft, t = 32", LEN);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MaxOft AD, t = 32");
+         strncpy (bbattery_TestNames[j], "MaxOft AD, t = 32", LEN);
       }
       sknuth_DeleteRes1 (res);
    }
@@ -2174,7 +2174,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleProd (gen, res, 40, 10 * MILLION, 0, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleProd, t = 8");
+         strncpy (bbattery_TestNames[j], "SampleProd, t = 8", LEN);
       }
 
       ++j2;
@@ -2182,7 +2182,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleProd (gen, res, 20, 10*MILLION, 0, 16);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleProd, t = 16");
+         strncpy (bbattery_TestNames[j], "SampleProd, t = 16", LEN);
       }
 
       ++j2;
@@ -2190,7 +2190,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleProd (gen, res, 20, 10*MILLION, 0, 24);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleProd, t = 24");
+         strncpy (bbattery_TestNames[j], "SampleProd, t = 24", LEN);
       }
 
       ++j2;
@@ -2198,7 +2198,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleMean (gen, res, 20*MILLION, 30, 0);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleMean, r = 0");
+         strncpy (bbattery_TestNames[j], "SampleMean, r = 0", LEN);
       }
 
       ++j2;
@@ -2206,7 +2206,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleMean (gen, res, 20*MILLION, 30, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleMean, r = 10");
+         strncpy (bbattery_TestNames[j], "SampleMean, r = 10", LEN);
       }
 
       ++j2;
@@ -2214,7 +2214,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleCorr (gen, res, 1, 2*BILLION, 0, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleCorr, k = 1");
+         strncpy (bbattery_TestNames[j], "SampleCorr, k = 1", LEN);
       }
 
       ++j2;
@@ -2222,7 +2222,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SampleCorr (gen, res, 1, 2*BILLION, 0, 2);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SampleCorr, k = 2");
+         strncpy (bbattery_TestNames[j], "SampleCorr, k = 2", LEN);
       }
 
       ++j2;
@@ -2231,7 +2231,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             r, 3, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AppearanceSpacings, r = 0");
+         strncpy (bbattery_TestNames[j], "AppearanceSpacings, r = 0", LEN);
       }
 
       ++j2;
@@ -2240,7 +2240,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
             27, 3, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AppearanceSpacings, r = 27");
+         strncpy (bbattery_TestNames[j], "AppearanceSpacings, r = 27", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -2253,7 +2253,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 0, 256, 0.0, 0.25);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 0");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 0", LEN);
       }
 
       ++j2;
@@ -2261,7 +2261,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 20, 256, 0.0, 0.25);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 20");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 20", LEN);
       }
 
       ++j2;
@@ -2269,7 +2269,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 28, 256, 0.0, 0.25);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 28");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 28", LEN);
       }
 
       ++j2;
@@ -2277,7 +2277,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 0, 256, 0.0, 0.0625);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 0");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 0", LEN);
       }
 
       ++j2;
@@ -2285,7 +2285,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 10, 256, 0.0, 0.0625);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 10");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 10", LEN);
       }
 
       ++j2;
@@ -2293,7 +2293,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_WeightDistrib (gen, res, 1, 20 * MILLION, 26, 256, 0.0, 0.0625);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "WeightDistrib, r = 26");
+         strncpy (bbattery_TestNames[j], "WeightDistrib, r = 26", LEN);
       }
 
       ++j2;
@@ -2301,7 +2301,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          svaria_SumCollector (gen, res, 1, 500 * MILLION, 0, 10.0);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "SumCollector");
+         strncpy (bbattery_TestNames[j], "SumCollector", LEN);
       }
 
       ++j2;
@@ -2309,7 +2309,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 10, MILLION, r, 5, 30, 30);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=30, r=0");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=30, r=0", LEN);
       }
 
       ++j2;
@@ -2317,7 +2317,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 10, MILLION, 25, 5, 30, 30);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=30, r=26");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=30, r=26", LEN);
       }
 
       ++j2;
@@ -2325,7 +2325,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 5 * THOUSAND, r, 4, 1000, 1000);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=1000, r=0");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=1000, r=0", LEN);
       }
 
       ++j2;
@@ -2333,7 +2333,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 5 * THOUSAND, 26, 4, 1000, 1000);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=1000, r=26");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=1000, r=26", LEN);
       }
 
       ++j2;
@@ -2341,7 +2341,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 80, 15, 15, 5000, 5000);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=5000");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=5000", LEN);
       }
 
       ++j2;
@@ -2349,7 +2349,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_MatrixRank (gen, res, 1, 80, 0, 30, 5000, 5000);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank, L=5000");
+         strncpy (bbattery_TestNames[j], "MatrixRank, L=5000", LEN);
       }
 
       ++j2;
@@ -2357,7 +2357,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_Savir2 (gen, res, 10, 10 * MILLION, 10, 1024*1024, 30);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Savir2");
+         strncpy (bbattery_TestNames[j], "Savir2", LEN);
       }
       sres_DeleteChi2 (res);
 
@@ -2367,7 +2367,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          smarsa_GCD (gen, res2, 10, 50 * MILLION, 0, 30);
          bbattery_pVal[++j] = res2->GCD->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "GCD");
+         strncpy (bbattery_TestNames[j], "GCD", LEN);
       }
       smarsa_DeleteRes2 (res2);
    }
@@ -2419,10 +2419,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          scomp_LinearComp (gen, res, 1, 400 * THOUSAND + 20, r, 1);
          bbattery_pVal[++j] = res->JumpNum->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 0");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 0", LEN);
          bbattery_pVal[++j] = res->JumpSize->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 0");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 0", LEN);
       }
 
       ++j2;
@@ -2430,10 +2430,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          scomp_LinearComp (gen, res, 1, 400 * THOUSAND + 20, 29, 1);
          bbattery_pVal[++j] = res->JumpNum->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 29");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 29", LEN);
          bbattery_pVal[++j] = res->JumpSize->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp, r = 0");
+         strncpy (bbattery_TestNames[j], "LinearComp, r = 0", LEN);
       }
       scomp_DeleteRes (res);
    }
@@ -2445,7 +2445,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          scomp_LempelZiv (gen, res, 10, 27, r, s);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LempelZiv, r = 0");
+         strncpy (bbattery_TestNames[j], "LempelZiv, r = 0", LEN);
       }
 
       ++j2;
@@ -2453,7 +2453,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          scomp_LempelZiv (gen, res, 10, 27, 15, 15);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LempelZiv, r = 15");
+         strncpy (bbattery_TestNames[j], "LempelZiv, r = 15", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -2465,7 +2465,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sspectral_Fourier3 (gen, res, 100 * THOUSAND, 14, r, 3);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier3, r = 0");
+         strncpy (bbattery_TestNames[j], "Fourier3, r = 0", LEN);
       }
 
       ++j2;
@@ -2473,7 +2473,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sspectral_Fourier3 (gen, res, 100 * THOUSAND, 14, 27, 3);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier3, r = 27");
+         strncpy (bbattery_TestNames[j], "Fourier3, r = 27", LEN);
       }
       sspectral_DeleteRes (res);
    }
@@ -2485,10 +2485,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_LongestHeadRun (gen, res, 1, 1000, r, 3, 20 + 10 * MILLION);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 0");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 0", LEN);
          bbattery_pVal[++j] = res->Disc->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 0");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 0", LEN);
       }
 
       ++j2;
@@ -2496,10 +2496,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_LongestHeadRun (gen, res, 1, 1000, 27, 3, 20 + 10 * MILLION);
          bbattery_pVal[++j] = res->Chi->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 27");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 27", LEN);
          bbattery_pVal[++j] = res->Disc->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LongestHeadRun, r = 27");
+         strncpy (bbattery_TestNames[j], "LongestHeadRun, r = 27", LEN);
       }
       sstring_DeleteRes2 (res);
    }
@@ -2511,7 +2511,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_PeriodsInStrings (gen, res, 10, BILLION/2, r, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "PeriodsInStrings, r = 0");
+         strncpy (bbattery_TestNames[j], "PeriodsInStrings, r = 0", LEN);
       }
 
       ++j2;
@@ -2519,7 +2519,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_PeriodsInStrings (gen, res, 10, BILLION/2, 20, 10);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "PeriodsInStrings, r = 20");
+         strncpy (bbattery_TestNames[j], "PeriodsInStrings, r = 20", LEN);
       }
       sres_DeleteChi2 (res);
    }
@@ -2531,7 +2531,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingWeight2 (gen, res, 10, BILLION, r, 3, MILLION);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingWeight2, r = 0");
+         strncpy (bbattery_TestNames[j], "HammingWeight2, r = 0", LEN);
       }
 
       ++j2;
@@ -2539,7 +2539,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingWeight2 (gen, res, 10, BILLION, 27, 3, MILLION);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingWeight2, r = 27");
+         strncpy (bbattery_TestNames[j], "HammingWeight2, r = 27", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -2551,7 +2551,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, BILLION, 10, 10, s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 30");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 30", LEN);
       }
 
       ++j2;
@@ -2559,7 +2559,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, 100 * MILLION, 10, 10, 10 * s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 300");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 300", LEN);
       }
 
       ++j2;
@@ -2567,7 +2567,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingCorr (gen, res, 1, 100 * MILLION, 10, 10, 40 * s);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 1200");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 1200", LEN);
       }
 
       ++j2;
@@ -2575,7 +2575,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 10, 30 * MILLION, r, 3, s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=30, r=0");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=30, r=0", LEN);
       }
 
       ++j2;
@@ -2583,7 +2583,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 10, 30 * MILLION, 27, 3, s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=30, r=27");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=30, r=27", LEN);
       }
 
       ++j2;
@@ -2591,7 +2591,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 30 * MILLION, r, 4, 10 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=300, r=0");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=300, r=0", LEN);
       }
 
       ++j2;
@@ -2599,7 +2599,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 30 * MILLION, 26, 4, 10 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=300, r=26");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=300, r=26", LEN);
       }
 
       ++j2;
@@ -2607,7 +2607,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 10 * MILLION, r, 5, 40 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=1200, r=0");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=1200, r=0", LEN);
       }
 
       ++j2;
@@ -2615,7 +2615,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_HammingIndep (gen, res, 1, 10 * MILLION, 25, 5, 40 * s, 0);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingIndep, L=1200, r=25");
+         strncpy (bbattery_TestNames[j], "HammingIndep, L=1200, r=25", LEN);
       }
       sstring_DeleteRes (res);
    }
@@ -2627,10 +2627,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_Run (gen, res, 1, 2*BILLION, r, 3);
          bbattery_pVal[++j] = res->NRuns->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 0");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 0", LEN);
          bbattery_pVal[++j] = res->NBits->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 0");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 0", LEN);
       }
 
       ++j2;
@@ -2638,10 +2638,10 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_Run (gen, res, 1, 2*BILLION, 27, 3);
          bbattery_pVal[++j] = res->NRuns->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 27");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 27", LEN);
          bbattery_pVal[++j] = res->NBits->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits, r = 27");
+         strncpy (bbattery_TestNames[j], "Run of bits, r = 27", LEN);
       }
       sstring_DeleteRes3 (res);
    }
@@ -2653,7 +2653,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 30 + BILLION, r, 3, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d=1, r=0");
+         strncpy (bbattery_TestNames[j], "AutoCor, d=1, r=0", LEN);
       }
 
       ++j2;
@@ -2661,7 +2661,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 30 + BILLION, r, 3, 3);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d=3, r=0");
+         strncpy (bbattery_TestNames[j], "AutoCor, d=3, r=0", LEN);
       }
 
       ++j2;
@@ -2669,7 +2669,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 30 + BILLION, 27, 3, 1);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d=1, r=27");
+         strncpy (bbattery_TestNames[j], "AutoCor, d=1, r=27", LEN);
       }
 
       ++j2;
@@ -2678,7 +2678,7 @@ static void BigCrush (unif01_Gen * gen, int Rep[])
          sstring_AutoCor (gen, res, 10, 30 + BILLION, 27, 3, 3);
          bbattery_pVal[++j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor, d=3, r=27");
+         strncpy (bbattery_TestNames[j], "AutoCor, d=3, r=27", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -2798,7 +2798,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
       ++j2;
       for (i = 0; i < Rep[j2]; ++i) {
          smultin_MultinomialBitsOver (gen, par, res, N, n, r, s, 2, FALSE);
-         strcpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 2");
+         strncpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 2", LEN);
          if (N == 1)
             bbattery_pVal[j] = res->pVal2[0][gofw_Mean];
          else
@@ -2811,7 +2811,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
       ++j2;
       for (i = 0; i < Rep[j2]; ++i) {
          smultin_MultinomialBitsOver (gen, par, res, N, n, r, s, 4, FALSE);
-         strcpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 4");
+         strncpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 4", LEN);
          if (N == 1)
             bbattery_pVal[j] = res->pVal2[0][gofw_Mean];
          else
@@ -2825,7 +2825,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
             ufile_InitReadBin ();
          for (i = 0; i < Rep[j2]; ++i) {
             smultin_MultinomialBitsOver (gen, par, res, N, n, r, s, 8, FALSE);
-            strcpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 8");
+            strncpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 8", LEN);
             if (N == 1)
                bbattery_pVal[j] = res->pVal2[0][gofw_Mean];
             else
@@ -2840,7 +2840,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
             ufile_InitReadBin ();
          for (i = 0; i < Rep[j2]; ++i) {
             smultin_MultinomialBitsOver (gen, par, res, N, n, r, s, 16, FALSE);
-            strcpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 16");
+            strncpy (bbattery_TestNames[++j], "MultinomialBitsOver, L = 16", LEN);
             if (N == 1)
                bbattery_pVal[j] = res->pVal2[0][gofw_Mean];
             else
@@ -2871,7 +2871,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Mean];
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
-            strcpy (bbattery_TestNames[j], "HammingIndep, L = 16");
+            strncpy (bbattery_TestNames[j], "HammingIndep, L = 16", LEN);
             TestNumber[j] = j2;
          }
       }
@@ -2888,7 +2888,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Mean];
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
-            strcpy (bbattery_TestNames[j], "HammingIndep, L = 32");
+            strncpy (bbattery_TestNames[j], "HammingIndep, L = 32", LEN);
             TestNumber[j] = j2;
          }
       }
@@ -2905,7 +2905,7 @@ static void Alphabit (unif01_Gen * gen, char *fname, double nb, int r, int s,
          else
             bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "HammingCorr, L = 32");
+         strncpy (bbattery_TestNames[j], "HammingCorr, L = 32", LEN);
       }
    }
 
@@ -3089,7 +3089,7 @@ static void DoMultinom (lebool fileFlag, /* */
    L = util_Max (4, L);
    for (i = 0; i < Rep[j2]; ++i) {
       smultin_MultinomialBitsOver (gen, par, res, N, n, 0, 32, L, TRUE);
-      strcpy (bbattery_TestNames[++j], "MultinomialBitsOver");
+      strncpy (bbattery_TestNames[++j], "MultinomialBitsOver", LEN);
       bbattery_pVal[j] = res->pColl;
       TestNumber[j] = j2;
    }
@@ -3119,7 +3119,7 @@ static void DoMultinom (lebool fileFlag, /* */
    if (n > 3) {
       for (i = 0; i < Rep[j2]; ++i) {
          smultin_MultinomialBits (gen, par, res, N, n, 0, 32, L, TRUE);
-         strcpy (bbattery_TestNames[++j], "MultinomialBits");
+         strncpy (bbattery_TestNames[++j], "MultinomialBits", LEN);
          bbattery_pVal[j] = res->pColl;
          TestNumber[j] = j2;
       }
@@ -3185,7 +3185,7 @@ static void DoAppear (lebool fileFlag, /* */
       else
          bbattery_pVal[j] = res->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "AppearanceSpacings");
+      strncpy (bbattery_TestNames[j], "AppearanceSpacings", LEN);
    }
    sres_DeleteBasic (res);
    *pj = j;
@@ -3339,7 +3339,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          snpair_ClosePairsBitMatch (gen, res, N, n / 2, 0, 2);
          bbattery_pVal[++j] = res->pVal[snpair_BM];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 2");
+         strncpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 2", LEN);
       }
 
       if (fileFlag)
@@ -3349,7 +3349,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          snpair_ClosePairsBitMatch (gen, res, N, n / 4, 0, 4);
          bbattery_pVal[++j] = res->pVal[snpair_BM];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 4");
+         strncpy (bbattery_TestNames[j], "ClosePairsBitMatch, t = 4", LEN);
       }
       snpair_DeleteRes (res);
    }
@@ -3377,14 +3377,14 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          else
             bbattery_pVal[j] = res->JumpSize->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp");
+         strncpy (bbattery_TestNames[j], "LinearComp", LEN);
          j++;
          if (N == 1)
             bbattery_pVal[j] = res->JumpNum->pVal2[gofw_Mean];
          else
             bbattery_pVal[j] = res->JumpNum->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LinearComp");
+         strncpy (bbattery_TestNames[j], "LinearComp", LEN);
       }
       scomp_DeleteRes (res);
    }
@@ -3407,7 +3407,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          else
             bbattery_pVal[j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "LempelZiv");
+         strncpy (bbattery_TestNames[j], "LempelZiv", LEN);
       }
       sres_DeleteBasic (res);
    }
@@ -3424,7 +3424,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          j++;
          bbattery_pVal[j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier1");
+         strncpy (bbattery_TestNames[j], "Fourier1", LEN);
       }
 
       x = sqrt (2.0 * nb);
@@ -3450,7 +3450,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          j++;
          bbattery_pVal[j] = res->Bas->pVal2[gofw_AD];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Fourier3");
+         strncpy (bbattery_TestNames[j], "Fourier3", LEN);
       }
       sspectral_DeleteRes (res);
    }
@@ -3477,7 +3477,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             j++;
             bbattery_pVal[j] = res->Chi->pVal2[gofw_Mean];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "LongestHeadRun");
+            strncpy (bbattery_TestNames[j], "LongestHeadRun", LEN);
          }
       }
       sstring_DeleteRes2 (res);
@@ -3501,7 +3501,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "PeriodsInStrings");
+            strncpy (bbattery_TestNames[j], "PeriodsInStrings", LEN);
          }
       }
 
@@ -3521,7 +3521,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingWeight");
+            strncpy (bbattery_TestNames[j], "HammingWeight", LEN);
          }
       }
       sres_DeleteChi2 (res);
@@ -3545,7 +3545,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingCorr, L = 32");
+            strncpy (bbattery_TestNames[j], "HammingCorr, L = 32", LEN);
          }
       }
 
@@ -3565,7 +3565,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingCorr, L = 64");
+            strncpy (bbattery_TestNames[j], "HammingCorr, L = 64", LEN);
          }
       }
 
@@ -3585,7 +3585,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingCorr, L = 128");
+            strncpy (bbattery_TestNames[j], "HammingCorr, L = 128", LEN);
          }
       }
 
@@ -3605,7 +3605,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingIndep, L = 16");
+            strncpy (bbattery_TestNames[j], "HammingIndep, L = 16", LEN);
          }
       }
 
@@ -3625,7 +3625,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "HammingIndep, L = 32");
+            strncpy (bbattery_TestNames[j], "HammingIndep, L = 32", LEN);
          }
       }
 
@@ -3644,7 +3644,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Mean];
             else
                bbattery_pVal[j] = res->Bas->pVal2[gofw_Sum];
-            strcpy (bbattery_TestNames[j], "HammingIndep, L = 64");
+            strncpy (bbattery_TestNames[j], "HammingIndep, L = 64", LEN);
             TestNumber[j] = j2;
          }
       }
@@ -3671,7 +3671,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          else
             bbattery_pVal[j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor");
+         strncpy (bbattery_TestNames[j], "AutoCor", LEN);
       }
 
       d = 2;
@@ -3690,7 +3690,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          else
             bbattery_pVal[j] = res->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "AutoCor");
+         strncpy (bbattery_TestNames[j], "AutoCor", LEN);
       }
 
       sres_DeleteBasic (res);
@@ -3713,14 +3713,14 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
          else
             bbattery_pVal[j] = res->NRuns->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits");
+         strncpy (bbattery_TestNames[j], "Run of bits", LEN);
          j++;
          if (N == 1)
             bbattery_pVal[j] = res->NBits->pVal2[gofw_Mean];
          else
             bbattery_pVal[j] = res->NBits->pVal2[gofw_Sum];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "Run of bits");
+         strncpy (bbattery_TestNames[j], "Run of bits", LEN);
        }
       sstring_DeleteRes3 (res);
    }
@@ -3739,7 +3739,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             smarsa_MatrixRank (gen, res, 1, n, 0, s, s, s);
             bbattery_pVal[j] = res->pVal2[gofw_Mean];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "MatrixRank, 32 x 32");
+            strncpy (bbattery_TestNames[j], "MatrixRank, 32 x 32", LEN);
          }
       }
 
@@ -3754,7 +3754,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             smarsa_MatrixRank (gen, res, 1, n, 0, s, 10 * s, 10 * s);
             bbattery_pVal[j] = res->pVal2[gofw_Mean];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "MatrixRank, 320 x 320");
+            strncpy (bbattery_TestNames[j], "MatrixRank, 320 x 320", LEN);
          }
       }
 
@@ -3769,7 +3769,7 @@ static void Rabbit (unif01_Gen * gen, char *fname, double nb, int Rep[])
             smarsa_MatrixRank (gen, res, 1, n, 0, s, 32 * s, 32 * s);
             bbattery_pVal[j] = res->pVal2[gofw_Mean];
             TestNumber[j] = j2;
-            strcpy (bbattery_TestNames[j], "MatrixRank, 1024 x 1024");
+            strncpy (bbattery_TestNames[j], "MatrixRank, 1024 x 1024", LEN);
          }
       }
       sres_DeleteChi2 (res);
@@ -3875,7 +3875,7 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
          printf ("ChiSquare statistic                   :");
          bbattery_pVal[++j] = fbar_ChiSquare2 (6, 12, x);
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "BirthdaySpacings");
+         strncpy (bbattery_TestNames[j], "BirthdaySpacings", LEN);
          gofw_Writep2 (x, bbattery_pVal[j]);
       }
       printf ("\n\n\n\n");
@@ -3890,18 +3890,18 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
       smarsa_MatrixRank (gen, res, 1, 40000, 0, 31, 31, 31);
       bbattery_pVal[++j] = res->pVal2[gofw_Mean];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "MatrixRank");
+      strncpy (bbattery_TestNames[j], "MatrixRank", LEN);
 
       smarsa_MatrixRank (gen, res, 1, 40000, 0, 32, 32, 32);
       bbattery_pVal[++j] = res->pVal2[gofw_Mean];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "MatrixRank");
+      strncpy (bbattery_TestNames[j], "MatrixRank", LEN);
 
       for (i = 0; i <= 24; i++) {
          smarsa_MatrixRank (gen, res, 1, 100000, i, 8, 6, 8);
          bbattery_pVal[++j] = res->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "MatrixRank");
+         strncpy (bbattery_TestNames[j], "MatrixRank", LEN);
       }
       sres_DeleteChi2 (res);
    }
@@ -3913,7 +3913,7 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
          TRUE);
       bbattery_pVal[++j] = res->pVal2[0][gofw_AD];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "MultinomialBitsOver");
+      strncpy (bbattery_TestNames[j], "MultinomialBitsOver", LEN);
       smultin_DeleteRes (res);
       smultin_DeleteParam (par);
    }
@@ -3925,7 +3925,7 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
          smarsa_Opso (gen, res, 1, i, 1);
          bbattery_pVal[++j] = res->Pois->pVal2;
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "OPSO");
+         strncpy (bbattery_TestNames[j], "OPSO", LEN);
       }
       ValDelta[0] = -1.0;
       ++j2;
@@ -3936,7 +3936,7 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
          smarsa_CollisionOver (gen, res, 1, 2097152, i, 32, 4);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "OQSO");
+         strncpy (bbattery_TestNames[j], "OQSO", LEN);
       }
       ++j2;
       for (i = 30; i >= 0; i--) {
@@ -3946,7 +3946,7 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
          smarsa_CollisionOver (gen, res, 1, 2097152, i, 4, 10);
          bbattery_pVal[++j] = res->Bas->pVal2[gofw_Mean];
          TestNumber[j] = j2;
-         strcpy (bbattery_TestNames[j], "DNA");
+         strncpy (bbattery_TestNames[j], "DNA", LEN);
       }
       smarsa_DeleteRes (res);
    }
@@ -3957,12 +3957,12 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
       snpair_ClosePairs (gen, res, 100, 8000, 0, 2, 2, 1);
       bbattery_pVal[++j] = res->pVal[snpair_NP];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "ClosePairs");
+      strncpy (bbattery_TestNames[j], "ClosePairs", LEN);
 
       snpair_ClosePairs (gen, res, 20, 4000, 0, 3, 2, 1);
       bbattery_pVal[++j] = res->pVal[snpair_NP];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "ClosePairs");
+      strncpy (bbattery_TestNames[j], "ClosePairs", LEN);
       snpair_DeleteRes (res);
    }
    {
@@ -3971,27 +3971,27 @@ void bbattery_pseudoDIEHARD (unif01_Gen * gen)
       smarsa_Savir2 (gen, res, 1, 100000, 0, 90000, 18);
       bbattery_pVal[++j] = res->pVal2[gofw_Mean];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "Savir2");
+      strncpy (bbattery_TestNames[j], "Savir2", LEN);
 
       ++j2;
       sknuth_Run (gen, res, 10, 10000, 0, TRUE);
       bbattery_pVal[++j] = res->pVal2[gofw_Sum];
       TestNumber[j] = ++j2;
-      strcpy (bbattery_TestNames[j], "Run of U01");
+      strncpy (bbattery_TestNames[j], "Run of U01", LEN);
 
       sknuth_Run (gen, res, 10, 10000, 0, FALSE);
       bbattery_pVal[++j] = res->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "Run of U01");
+      strncpy (bbattery_TestNames[j], "Run of U01", LEN);
 
       sknuth_Run (gen, res, 10, 10000, 0, TRUE);
       bbattery_pVal[++j] = res->pVal2[gofw_Sum];
       TestNumber[j] = j2;
-      strcpy (bbattery_TestNames[j], "Run of U01");
+      strncpy (bbattery_TestNames[j], "Run of U01", LEN);
 
       sknuth_Run (gen, res, 10, 10000, 0, FALSE);
       bbattery_pVal[++j] = res->pVal2[gofw_Sum];
-      strcpy (bbattery_TestNames[j], "Run of U01");
+      strncpy (bbattery_TestNames[j], "Run of U01", LEN);
       TestNumber[j] = j2;
       sres_DeleteChi2 (res);
    }
@@ -4293,7 +4293,7 @@ static void FIPS_140_2 (unif01_Gen * gen, char *filename)
 
    if (fileFlag) {
       ufile_DeleteReadBin (gen);
-      strncpy (genName, filename, (size_t) LEN);
+      strncpy (genName, filename, LEN);
    } else {
       GetName (gen, genName);
    }
@@ -4353,24 +4353,24 @@ static void FIPS_140_2 (unif01_Gen * gen, char *filename)
       }
    }
 
-   strcpy (bbattery_TestNames[0], "Monobit");
-   strcpy (bbattery_TestNames[1], "Poker");
+   strncpy (bbattery_TestNames[0], "Monobit", LEN);
+   strncpy (bbattery_TestNames[1], "Poker", LEN);
    j = 1;
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 1: ");
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 2: ");
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 3: ");
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 4: ");
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 5: ");
-   strcpy (bbattery_TestNames[++j], "0 Runs, length 6+: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 1: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 2: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 3: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 4: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 5: ");
-   strcpy (bbattery_TestNames[++j], "1 Runs, length 6+: ");
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 1: ", LEN);
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 2: ", LEN);
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 3: ", LEN);
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 4: ", LEN);
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 5: ", LEN);
+   strncpy (bbattery_TestNames[++j], "0 Runs, length 6+: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 1: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 2: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 3: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 4: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 5: ", LEN);
+   strncpy (bbattery_TestNames[++j], "1 Runs, length 6+: ", LEN);
 
-   strcpy (bbattery_TestNames[++j], "Longest run of 0: ");
-   strcpy (bbattery_TestNames[++j], "Longest run of 1: ");
+   strncpy (bbattery_TestNames[++j], "Longest run of 0: ", LEN);
+   strncpy (bbattery_TestNames[++j], "Longest run of 1: ", LEN);
 
    WriteReportFIPS_140_2 (genName, fileFlag, nbit, longest0, longest1,
       nrun0, nrun1, ncount);

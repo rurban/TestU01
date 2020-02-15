@@ -97,11 +97,11 @@ static int ReadOneLCG (char *Line, ffam_Fam * fam, int i)
       char format[20];
 
       /* Build reading format for big integers read as a string */
-      strncpy (format, "%*d %", (size_t) 6);
-      strncat (format, BIGCAR, (size_t) 10);
-      strncat (format, "s %", (size_t) 5);
-      strncat (format, BIGCAR, (size_t) 10);
-      strncat (format, "s", (size_t) 2);
+      strncpy (format, "%*d %", 20);
+      strncat (format, BIGCAR, 20);
+      strncat (format, "s %", 20);
+      strncat (format, BIGCAR, 20);
+      strncat (format, "s", 20);
       status = sscanf (Line, format, bigm, biga);
       util_Assert (status == 2,
          "ReadOneLCG:   Error in reading LCG (Big) parameter file");
@@ -135,9 +135,9 @@ static int ReadOneLCGPow2 (char *Line, ffam_Fam * fam, int i)
       char format[20];
 
       /* Build reading format for big integers read as a string */
-      strncpy (format, "%*d %", (size_t) 6);
-      strncat (format, BIGCAR, (size_t) 10);
-      strncat (format, "s", (size_t) 2);
+      strncpy (format, "%*d %", 20);
+      strncat (format, BIGCAR, 20);
+      strncat (format, "s", 20);
       status = sscanf (Line, format, biga);
       util_Assert (status == 1,
          "ReadOneLCG:   Error in reading LCGPow2 (Big) parameter file");
@@ -747,7 +747,7 @@ ffam_Fam *fcong_CreateInvMRG2 (char *filename, int i1, int i2, int istep)
    fam = ReadAllGen (filename, "MRG2.par", InvMRG2_a, i1, i2, istep);
    len = strlen ("InvMRG2");
    fam->name = util_Realloc (fam->name, (1 + len) * sizeof (char));
-   strncpy (fam->name, "InvMRG2", (size_t) len);
+   strncpy (fam->name, "InvMRG2", len);
    return fam;
 }
 

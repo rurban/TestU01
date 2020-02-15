@@ -189,9 +189,10 @@ unif01_Gen * ulec_CreateCombLec88 (long S1, long S2)
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CombLec88_state));
 
-   strncpy (name, "ulec_CreateCombLec88:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCombLec88:", LEN);
    addstr_Long (name, "   S1 = ", S1);
    addstr_Long (name, ",   S2 = ", S2);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -263,9 +264,10 @@ unif01_Gen * ulec_CreateCombLec88Float (long S1, long S2)
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CombLec88Float_state));
 
-   strncpy (name, "ulec_CreateCombLec88Float:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCombLec88Float:", LEN);
    addstr_Long (name, "   S1 = ", S1);
    addstr_Long (name, ",   S2 = ", S2);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -368,11 +370,12 @@ unif01_Gen * ulec_CreateCLCG4 (long S1, long S2, long S3, long S4)
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CLCG4_state));
 
-   strncpy (name, "ulec_CreateCLCG4:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCLCG4:", LEN);
    addstr_Long (name, "   S1 = ", S1);
    addstr_Long (name, ",   S2 = ", S2);
    addstr_Long (name, ",   S3 = ", S3);
    addstr_Long (name, ",   S4 = ", S4);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -481,11 +484,12 @@ unif01_Gen * ulec_CreateCLCG4Float (long S1, long S2, long S3, long S4)
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CLCG4Float_state));
 
-   strncpy (name, "ulec_CreateCLCG4Float:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCLCG4Float:", LEN);
    addstr_Long (name, "   S1 = ", S1);
    addstr_Long (name, ",   S2 = ", S2);
    addstr_Long (name, ",   S3 = ", S3);
    addstr_Long (name, ",   S4 = ", S4);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -576,12 +580,13 @@ unif01_Gen * ulec_CreateMRG93 (long S1, long S2, long S3, long S4, long S5)
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (MRG93_state));
 
-   strncpy (name, "ulec_CreateMRG93:", (size_t) LEN);
+   strncpy (name, "ulec_CreateMRG93:", LEN);
    addstr_Long (name, "   S1 = ", S1);
    addstr_Long (name, ",   S2 = ", S2);
    addstr_Long (name, ",   S3 = ", S3);
    addstr_Long (name, ",   S4 = ", S4);
    addstr_Long (name, ",   S5 = ", S5);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -725,7 +730,7 @@ unif01_Gen *ulec_CreateCombMRG96 (long S11, long S12, long S13,
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CombMRG96_state));
 
-   strncpy (name, "ulec_CreateCombMRG96:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCombMRG96:", LEN);
    addstr_Long (name, " (S11, ..., S23) = (", S11);
    addstr_Long (name, ", ", S12);
    addstr_Long (name, ", ", S13);
@@ -733,6 +738,7 @@ unif01_Gen *ulec_CreateCombMRG96 (long S11, long S12, long S13,
    addstr_Long (name, ", ", S22);
    addstr_Long (name, ", ", S23);
    addstr_Char (name, ")", ' ');
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -833,7 +839,7 @@ unif01_Gen *ulec_CreateCombMRG96Float (long S11, long S12, long S13,
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (CombMRG96Float_state));
 
-   strncpy (name, "ulec_CreateCombMRG96Float:", (size_t) LEN);
+   strncpy (name, "ulec_CreateCombMRG96Float:", LEN);
    addstr_Long (name, " (S11, ..., S23) = (", S11);
    addstr_Long (name, ", ", S12);
    addstr_Long (name, ", ", S13);
@@ -841,6 +847,7 @@ unif01_Gen *ulec_CreateCombMRG96Float (long S11, long S12, long S13,
    addstr_Long (name, ", ", S22);
    addstr_Long (name, ", ", S23);
    addstr_Char (name, ")", ' ');
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);
@@ -2167,15 +2174,15 @@ unif01_Gen * ulec_CreateMRG31k3p (long x10, long x11,
    gen = util_Malloc (sizeof (unif01_Gen));
    state = util_Malloc (sizeof (MRG31k3p_state));
 
-   strncpy (name, "ulec_CreateMRG31k3p:   (x10, x11, x12, x20, x21, x22) = ",
-     (size_t) LEN);
+   strncpy (name, "ulec_CreateMRG31k3p:   (x10, x11, x12, x20, x21, x22) = ", LEN);
    addstr_Long (name, "(", x10);
    addstr_Long (name, ", ", x11);
    addstr_Long (name, ", ", x12);
    addstr_Long (name, ", ", x20);
    addstr_Long (name, ", ", x21);
    addstr_Long (name, ", ", x22);
-   strncat (name, ")", (size_t) 1);
+   strncat (name, ")", LEN);
+   name[LEN] = '\0';
    leng = strlen (name);
    gen->name = util_Calloc (leng + 1, sizeof (char));
    strncpy (gen->name, name, leng);

@@ -293,7 +293,7 @@ fcho_Cho *fmarsa_CreateBirthEC (long N, int t, double EC)
    cho->Write = WriteBirthEC;
    cho->Choose = ChooseBirthEC;
    cho->name = util_Calloc (2, sizeof (char));
-   strcpy (cho->name, "d");
+   strncpy (cho->name, "d", 2);
    return cho;
 }
 

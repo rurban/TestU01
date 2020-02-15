@@ -130,16 +130,16 @@ FILE *ffam_OpenFile (char *filename, char *deffile)
    }
 
    /* Build directory: "../param/" on Linux, "..\\param\\" on Windows */
-   strncpy (path, "..", (size_t) 3);
-   strncat (path, DIR_SEPARATOR, (size_t) 3);
-   strncat (path, "param", (size_t) 6);
-   strncat (path, DIR_SEPARATOR, (size_t) 3);
+   strncpy (path, "..", MAXCAR);
+   strncat (path, DIR_SEPARATOR, MAXCAR);
+   strncat (path, "param", MAXCAR);
+   strncat (path, DIR_SEPARATOR, MAXCAR);
 
    /* Is filename NULL? open default file */
    if (filename == NULL)
-      strncat (path, deffile, (size_t) MAXCAR - 20);
+      strncat (path, deffile, MAXCAR);
    else
-      strncat (path, filename, (size_t) MAXCAR - 20);
+      strncat (path, filename, MAXCAR);
 
    f = util_Fopen (path, "r");
    return f;

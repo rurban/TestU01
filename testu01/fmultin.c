@@ -98,10 +98,10 @@ static void InitCOAStrings (void)
  * Type of approximation used in CollisionOver test.
  */
 {
-   strncpy (COAMessages[smultin_CollNormal], "   N    ", (size_t) LEN3);
-   strncpy (COAMessages[smultin_CollPoissonSparse], "   C    ", (size_t) LEN3);
-   strncpy (COAMessages[smultin_CollPoissonDense], "   V    ", (size_t) LEN3);
-   strncpy (COAMessages[smultin_CollNotInit], "  ---   ", (size_t) LEN3);
+   strncpy (COAMessages[smultin_CollNormal], "   N    ", LEN3);
+   strncpy (COAMessages[smultin_CollPoissonSparse], "   C    ", LEN3);
+   strncpy (COAMessages[smultin_CollPoissonDense], "   V    ", LEN3);
+   strncpy (COAMessages[smultin_CollNotInit], "  ---   ", LEN3);
 }
 
 
@@ -135,9 +135,9 @@ static void InitRes (
 
    for (s = 0; s < par->NbDelta; s++) {
       if (fabs (par->ValDelta[s] + 1.0) < EPSILON) {
-         strncpy (str, name, (size_t) LEN);
+         strncpy (str, name, LEN);
          if (Over) {
-            strncat (str, ": CollisionOver test", (size_t) LEN2);
+            strncat (str, ": CollisionOver test", LEN);
             ftab_DeleteTable (res->COApprox);
             res->COApprox = ftab_CreateTable (Nr, j1, j2, jstep,
                "Approximation used for distribution of CollisionOver",
@@ -149,27 +149,27 @@ static void InitRes (
                res->COApprox->Strings[i] = COAMessages[i];
 	    }
          } else {
-            strncat (str, ": Collision test", (size_t) LEN2);
+            strncat (str, ": Collision test", LEN);
          }
          fres_InitPoisson (fam, res->Coll, Nr, j1, j2, jstep, str);
-         strncpy (str, name, (size_t) LEN);
-         strncat (str, ": empty cells", (size_t) LEN2);
+         strncpy (str, name, LEN);
+         strncat (str, ": empty cells", LEN);
          fres_InitPoisson (fam, res->Empty, Nr, j1, j2, jstep, str);
          for (i = 1; i <= par->bmax; i++) {
-            strncpy (str, name, (size_t) LEN);
-            strncat (str, ": cells with at least ", (size_t) LEN2);
-            sprintf (str2, "%1d", i);
-            strncat (str, str2, (size_t) 3);
-            strncat (str, " balls", (size_t) LEN2);
+            strncpy (str, name, LEN);
+            strncat (str, ": cells with at least ", LEN);
+            snprintf (str2, LEN2, "%1d", i);
+            strncat (str, str2, LEN);
+            strncat (str, " balls", LEN);
             fres_InitPoisson (fam, res->Balls[i], Nr, j1, j2, jstep, str);
          }
       }
 
-      strncpy (str, name, (size_t) LEN);
-      strncat (str, ": ValDelta = ", (size_t) LEN2);
-      sprintf (str2, "%6.3f,", par->ValDelta[s]);
-      strncat (str, str2, (size_t) LEN2);
-      strncat (str, " test", (size_t) LEN2);
+      strncpy (str, name, LEN);
+      strncat (str, ": ValDelta = ", LEN);
+      snprintf (str2, LEN2, "%6.3f,", par->ValDelta[s]);
+      strncat (str, str2, LEN);
+      strncat (str, " test", LEN);
       fres_InitCont (fam, res->PowDiv[s], N, Nr, j1, j2, jstep, str);
    }
    /*
@@ -298,6 +298,7 @@ static void PrintRes (fmultin_Res * res, lebool Over)
 
 /*=========================================================================*/
 
+#define PARLEN 1
 static fcho_Cho *CreateKcho (long N, int t, double R, KType kcho)
 {
    fcho_Cho *cho;
@@ -310,7 +311,7 @@ static fcho_Cho *CreateKcho (long N, int t, double R, KType kcho)
    Par->R = R;
    Par->kcho = kcho;
    cho->param = Par;
-   cho->name = util_Calloc (2, sizeof (char));
+   cho->name = util_Calloc (PARLEN+1, sizeof (char));
    Par->name = cho->name;
    return cho;
 }
@@ -333,7 +334,7 @@ static double CheckK1 (void *vpar, double K, long n)
    switch (kcho) {
    case B_DT:
       d = pow (K, 1.0 / Par->t);
-      strcpy (Par->name, "d");
+      strncpy (Par->name, "d", PARLEN);
       if (d > LONG_MAX)
          return -1.0;
       else
@@ -343,7 +344,7 @@ static double CheckK1 (void *vpar, double K, long n)
    case B_2HT:
       h = 0.5 + num_Log2(K) / Par->t;
       d = num_TwoExp[h];
-      strcpy (Par->name, "d");
+      strncpy (Par->name, "d", PARLEN);
       if (d > LONG_MAX)
          return -1.0;
       else
@@ -352,12 +353,12 @@ static double CheckK1 (void *vpar, double K, long n)
 
    case B_2L:
       L = 0.5 + num_Log2(K);
-      strcpy (Par->name, "L");
+      strncpy (Par->name, "L", PARLEN);
       return L;
       break;
 
    case B_T:
-      strcpy (Par->name, "t");
+      strncpy (Par->name, "t", PARLEN);
       /* Find smallest t such that t! > k */
       x = 2.0;
       t = 2;
@@ -733,7 +734,7 @@ static void TabMultin (ffam_Fam *fam, void *vres, void *vcho,
    if (n < 0)
       return;
    if (d < 0) {
-      strncpy (chop2->name, "d", 1);
+      strncpy (chop2->name, "d", PARLEN);
       d = fcho_ChooseParamL (chop2, 2, LONG_MAX, i, n);
       if (d < 0)
          return;
@@ -743,7 +744,7 @@ static void TabMultin (ffam_Fam *fam, void *vres, void *vcho,
 	 return;
       }
    } else {
-      strncpy (chop2->name, "t", 1);
+      strncpy (chop2->name, "t", PARLEN);
       t = fcho_ChooseParamL (chop2, 2, 18, i, n);
       if (t < 0)
          return;
@@ -823,7 +824,7 @@ static void TabSerialBits (ffam_Fam * fam, void *vres, void *vcho,
    if (n < 0)
       return;
 
-   strncpy (chop2->name, "L", 1);
+   strncpy (chop2->name, "L", PARLEN);
    L = fcho_ChooseParamL (chop2, 1, 53, i, n);
    if (L < 0)
       return;

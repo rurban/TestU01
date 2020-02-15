@@ -58,12 +58,12 @@ void fres_InitCont (ffam_Fam *fam, fres_Cont *res, int N,
    for (j = 0; j < gofw_NTestTypes; j++) {
       if ((gofw_Mean == j) ||
             (N > 1 && (bitset_TestBit (gofw_ActiveTests, j)))) {
-         strncpy (str, nam, (size_t) LEN);
+         strncpy (str, nam, LEN);
          len1 = strlen (str);
 	 strncat (str, ": ", 3);
          p = strstr (res->PVal[j]->Desc, "p-value");
          if (p)
-	    strncat (str, p, (size_t) LEN - len1);
+	    strncat (str, p, LEN);
          ftab_DeleteTable (res->PVal[j]);
 	 res->PVal[j] = ftab_CreateTable (Nr, f1, f2, fstep, str,
                         ftab_pVal2, 0);
@@ -93,10 +93,10 @@ fres_Cont * fres_CreateCont (void)
    m = strlen ("p-value for statistic ");
    for (j = 0; j < gofw_NTestTypes; j++) {
       if ((gofw_Mean == j) || (bitset_TestBit (gofw_ActiveTests, j))) {
-	 strncpy (str, "p-value for ", (size_t) LEN);
+	 strncpy (str, "p-value for ", LEN);
 	 if (gofw_Mean != j)
-            strncat (str, gofw_TestNames[j], (size_t) LEN - m);
-	 strncat (str, " statistic", (size_t) LEN - m);
+            strncat (str, gofw_TestNames[j], LEN);
+	 strncat (str, " statistic", LEN);
 	 res->PVal[j] = ftab_CreateTable (1, 0, 1, 1, str, ftab_pVal2, 0);
       }
    }
@@ -167,13 +167,11 @@ void fres_InitDisc (ffam_Fam *fam, fres_Disc *res,
 {
    char str[LEN + 1] = {0};
    char str2[LEN + 1] = {0};
-   size_t len1;
    int i;
 
    res->name = util_Realloc (res->name, 1 + strlen (nam) * sizeof (char));
    strcpy (res->name, nam);
-   strncpy (str, nam, (size_t) LEN);
-   len1 = strlen (nam);
+   strncpy (str, nam, LEN);
  
    Nr = util_Min (Nr, fam->Ng);
 
@@ -181,16 +179,16 @@ void fres_InitDisc (ffam_Fam *fam, fres_Disc *res,
    ftab_DeleteTable (res->PRight);
    ftab_DeleteTable (res->PLeft);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Left p-value", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Left p-value", LEN);
    res->PLeft = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal1, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Right p-value", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Right p-value", LEN);
    res->PRight = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal1, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", p-value for discrete statistic", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", p-value for discrete statistic", LEN);
    res->PVal2 = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal2, 0);
 
    ftab_InitMatrix (res->PLeft, -1.0);
@@ -268,13 +266,11 @@ void fres_InitPoisson (ffam_Fam *fam, fres_Poisson *res,
 {
    char str[LEN + 1] = {0};
    char str2[LEN + 1] = {0};
-   size_t len1;
    int i;
 
    res->name = util_Realloc (res->name, 1 + strlen (nam) * sizeof (char));
    strcpy (res->name, nam);
-   strncpy (str, nam, (size_t) LEN);
-   len1 = strlen (nam);
+   strncpy (str, nam, LEN);
  
    Nr = util_Min (Nr, fam->Ng);
 
@@ -284,24 +280,24 @@ void fres_InitPoisson (ffam_Fam *fam, fres_Poisson *res,
    ftab_DeleteTable (res->PRight);
    ftab_DeleteTable (res->PLeft);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Expected numbers", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Expected numbers", LEN);
    res->Exp = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_Real, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Observed numbers", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Observed numbers", LEN);
    res->Obs = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_Integer, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Left p-value", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Left p-value", LEN);
    res->PLeft = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal1, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", Right p-value", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", Right p-value", LEN);
    res->PRight = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal1, 0);
 
-   strncpy (str2, nam, (size_t) LEN);
-   strncat (str2, ", p-value for discrete statistic", (size_t) LEN - len1);
+   strncpy (str2, nam, LEN);
+   strncat (str2, ", p-value for discrete statistic", LEN);
    res->PVal2 = ftab_CreateTable (Nr, f1, f2, fstep, str2, ftab_pVal2, 0);
 
    ftab_InitMatrix (res->Exp, -1.0);
