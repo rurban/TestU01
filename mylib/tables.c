@@ -113,21 +113,24 @@ double **tables_CreateMatrixD (int N, int M)
 
 void tables_DeleteMatrixL (long ***T)
 {
-   free ((*T)[0]);
+   if (*T)
+     free ((*T)[0]);
    free (*T);
    *T = NULL;
 }
 
 void tables_DeleteMatrixUL (unsigned long ***T)
 {
-   free ((*T)[0]);
+   if (*T)
+     free ((*T)[0]);
    free (*T);
    *T = NULL;
 }
 
 void tables_DeleteMatrixD (double ***T)
 {
-   free ((*T)[0]);
+   if (*T)
+     free ((*T)[0]);
    free (*T);
    *T = NULL;
 }
