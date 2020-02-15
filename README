@@ -121,7 +121,7 @@ the 3 following paths must be added to the environment variables.
 
 LD_LIBRARY_PATH    <install directory>/lib
 LIBRARY_PATH       <install directory>/lib
-C_INCLUDE_PATH     <install directory>/include
+C_INCLUDE_PATH     <install directory>/include/TestU01
 
 [ If the libraries have been installed in /usr/local, it may be
   necessary for some Unix/Linux systems to redefine these 3 paths.
