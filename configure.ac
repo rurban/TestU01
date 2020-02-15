@@ -41,6 +41,8 @@ AC_CHECK_TYPES([long long, uint32_t, uint8_t])
 LIBS="$LIBM $LIBS"
 AC_CHECK_FUNCS([random erf lgamma log1p])
 
+includedir='${prefix}/include/${PACKAGE_NAME}'
+
 AC_CONFIG_FILES([Makefile
                  include/Makefile mylib/Makefile probdist/Makefile
                  testu01/Makefile examples/Makefile doc/Makefile param/Makefile])
