@@ -10,3 +10,9 @@ libtestu01_la_LDFLAGS = -no-undefined -version-info 0:1:0
 EXTRA_DIST = guidetestu01.tex intro.tex title.tex scatfig.tex bintro.tex copyright.tex fintro.tex sintro.tex uintro.tex guidetestu01.bbl
 
 doc_DATA = guideshorttestu01.pdf guidelongtestu01.pdf
+
+# emacs flymake-mode
+check-syntax:
+	test -n "$(CHK_SOURCES)" && \
+	  nice $(COMPILE) -O2 -o /dev/null -S $(CHK_SOURCES)
+.PHONY: check-syntax
