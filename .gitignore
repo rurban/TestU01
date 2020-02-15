@@ -48,6 +48,10 @@
 /examples/fcoll
 /examples/scat
 /examples/scat2
+/examples/*.log
+/examples/*.trs
+/examples/bone.tex
+/test-driver
 /include/Makefile
 /include/config.h
 /include/config.h.in~
