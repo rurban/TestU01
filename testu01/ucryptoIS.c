@@ -6,11 +6,11 @@
  *
 \*************************************************************************/
 
-#include "util.h"
-#include "addstr.h"
+#include "TestU01/util.h"
+#include "TestU01/addstr.h"
 
-#include "ucrypto.h"
-#include "unif01.h"
+#include "TestU01/ucrypto.h"
+#include "TestU01/unif01.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -117,7 +117,7 @@ MODIFIED:
 ------------------------------------------------------------------------------
 
 #ifndef STANDARD
-#include "standard.h"
+#include "TestU01/standard.h"
 #endif
 */
 
@@ -180,10 +180,10 @@ MODIFIED:
 ------------------------------------------------------------------------------
 
 #ifndef STANDARD
-#include "standard.h"
+#include "TestU01/standard.h"
 #endif
 #ifndef RAND
-#include "rand.h"
+#include "TestU01/rand.h"
 #endif
 */
 

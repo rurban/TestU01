@@ -28,14 +28,14 @@
  *
 \*************************************************************************/
 
-#include "util.h"
-#include "addstr.h"
-#include "num.h"
+#include "TestU01/util.h"
+#include "TestU01/addstr.h"
+#include "TestU01/num.h"
 
-#include "rijndael-alg-fst.h"
-#include "tu01_sha1.h"
-#include "ucrypto.h"
-#include "unif01.h"
+#include "TestU01/rijndael-alg-fst.h"
+#include "TestU01/tu01_sha1.h"
+#include "TestU01/ucrypto.h"
+#include "TestU01/unif01.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -291,9 +291,9 @@ unif01_Gen * ucrypto_CreateAES (unsigned char *Key, int KeyLen,
       util_Error ("ucrypto_CreateAES, klen:   no such case");
    }
 
-   strncpy (name, "ucrypto_CreateAES:   mode = ", (size_t) LEN);
+   strncpy (name, "ucrypto_CreateAES:   mode = ", LEN);
    getStringMode (mode, str);
-   strncat (name, str, (size_t) LEN);
+   strncat (name, str, LEN);
    addstr_Int (name, ",   r = ", r);
    addstr_Int (name, ",   s = ", s);
    addstr_Long (name, ",   klen = ", (long) KeyLen);
@@ -451,9 +451,9 @@ unif01_Gen * ucrypto_CreateSHA1 (unsigned char *Seed, int len, ucrypto_Mode mode
    memset (state, 0, sizeof (SHA1_state));
    if (r < 0) r = 0;
 
-   strncpy (name, "ucrypto_CreateSHA1:   mode = ", (size_t) LEN);
+   strncpy (name, "ucrypto_CreateSHA1:   mode = ", LEN);
    getStringMode (mode, str);
-   strncat (name, str, (size_t) LEN);
+   strncat (name, str, LEN);
    addstr_Int (name, ",   r = ", r);
    addstr_Int (name, ",   s = ", s);
    addstr_Int (name, ",   len = ", len);

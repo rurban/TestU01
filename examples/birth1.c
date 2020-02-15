@@ -1,7 +1,7 @@
 
-#include "unif01.h"
-#include "ulcg.h"
-#include "smarsa.h"
+#include "TestU01/unif01.h"
+#include "TestU01/ulcg.h"
+#include "TestU01/smarsa.h"
 #include <stddef.h>
 
 int main (void)

@@ -28,7 +28,7 @@
  *
 \*************************************************************************/
 
-#include "addstr.h"
+#include "TestU01/addstr.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -28,14 +28,14 @@
  *
 \*************************************************************************/
 
-#include "finv.h"
-#include "fdist.h"
-#include "wdist.h"
+#include "TestU01/finv.h"
+#include "TestU01/fdist.h"
+#include "TestU01/wdist.h"
 
-#include "num.h"
-#include "num2.h"
-#include "util.h"
-#include "gdef.h"
+#include "TestU01/num.h"
+#include "TestU01/num2.h"
+#include "TestU01/util.h"
+#include "TestU01/gdef.h"
 
 #include <limits.h>
 #include <float.h>

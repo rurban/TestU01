@@ -28,9 +28,9 @@
  *
 \*************************************************************************/
 
-#include "num2.h"
-#include "util.h"
-#include "num.h"
+#include "TestU01/num2.h"
+#include "TestU01/util.h"
+#include "TestU01/num.h"
 #include <math.h>
 #include <float.h>
 #include <stdlib.h>

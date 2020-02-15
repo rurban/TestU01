@@ -28,12 +28,12 @@
  *
 \*************************************************************************/
 
-#include "util.h"
-#include "num.h"
-#include "addstr.h"
+#include "TestU01/util.h"
+#include "TestU01/num.h"
+#include "TestU01/addstr.h"
 
-#include "ucubic.h"
-#include "unif01.h"
+#include "TestU01/ucubic.h"
+#include "TestU01/unif01.h"
 
 #include <stdio.h>
 #include <stdlib.h>

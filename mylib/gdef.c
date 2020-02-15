@@ -32,7 +32,7 @@
 #include "config.h"
 #endif
 
-#include "gdef.h"
+#include "TestU01/gdef.h"
 #ifdef HAVE_WINDOWS_H
    #include <windows.h>
 #endif
@@ -51,7 +51,7 @@
 
 #endif
 
-
+#define MAXBYTES 255
 
 void gdef_GetHostName (char machine[], int n)
 {
@@ -68,15 +68,15 @@ void gdef_GetHostName (char machine[], int n)
 
 #ifdef HAVE_SYS_UTSNAME_H
    if (uname(&Z) != -1) {
-      strncpy (machine, Z.nodename, (size_t) n);
+      strncpy (machine, Z.nodename, MAXBYTES);
       j = strlen (machine);
       if (n - j > 2)
-         strncat (machine, ", ", (size_t) 2);
+         strncat (machine, ", ", MAXBYTES);
       j = strlen (machine);
       if (n - j > 0)
-         strncat (machine, Z.sysname, (size_t) (n - j));
+         strncat (machine, Z.sysname, MAXBYTES);
       machine[n - 1] = '\0';
-      return;   
+      return;
    }
 
 #else
@@ -88,7 +88,7 @@ void gdef_GetHostName (char machine[], int n)
 #else
    name = getenv ("HOST");
    if (name != NULL) {
-      strncpy (machine, name, (size_t) n);
+      strncpy (machine, name, MAXBYTES);
       j = strlen (machine);
       machine[n - 1] = '\0';
       if (j < n - 3) {
@@ -99,7 +99,7 @@ void gdef_GetHostName (char machine[], int n)
    name = getenv ("OSTYPE");
    if (name != NULL) {
       if ((int) strlen (name) < n - j)
-         strncat (machine, name, (size_t) n - j);
+         strncat (machine, name, MAXBYTES);
       machine[n - 1] = '\0';
    }
 
@@ -109,7 +109,6 @@ void gdef_GetHostName (char machine[], int n)
 
 
 /*------------------------------------------------------------------------*/
-#define MAXBYTES 255
 
 void gdef_WriteHostName (void)
 {

@@ -1,6 +1,6 @@
 
-#include "unif01.h"
-#include "utaus.h"
+#include "TestU01/unif01.h"
+#include "TestU01/utaus.h"
 #include <stdio.h>
 
 int main (void)

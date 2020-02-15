@@ -28,7 +28,7 @@
  *
 \*************************************************************************/
 
-#include "util.h"
+#include "TestU01/util.h"
 
 #include <stdio.h>
 #include <stdlib.h>

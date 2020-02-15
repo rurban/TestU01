@@ -7,11 +7,11 @@
  *
 \*************************************************************************/
 
-#include "util.h"
-#include "addstr.h"
+#include "TestU01/util.h"
+#include "TestU01/addstr.h"
 
-#include "uknuth.h"
-#include "unif01.h"
+#include "TestU01/uknuth.h"
+#include "TestU01/unif01.h"
 
 #include <stdio.h>
 #include <string.h>

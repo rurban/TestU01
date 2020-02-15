@@ -1,4 +1,4 @@
-#include "unif01.h"
+#include "TestU01/unif01.h"
 
 unif01_Gen *CreateMy16807 (int s);
 

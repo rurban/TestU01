@@ -1,6 +1,6 @@
-#include "ulcg.h"
-#include "unif01.h"
-#include "bbattery.h"
+#include "TestU01/ulcg.h"
+#include "TestU01/unif01.h"
+#include "TestU01/bbattery.h"
 
 int main (void)
 {

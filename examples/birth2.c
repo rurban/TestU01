@@ -1,9 +1,9 @@
 
-#include "unif01.h"
-#include "ulcg.h"
-#include "sres.h"
-#include "swrite.h"
-#include "smarsa.h"
+#include "TestU01/unif01.h"
+#include "TestU01/ulcg.h"
+#include "TestU01/sres.h"
+#include "TestU01/swrite.h"
+#include "TestU01/smarsa.h"
 
 int main (void)
 {

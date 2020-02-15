@@ -1,10 +1,10 @@
-%.h: ${MYLIB}/%.tex
+TestU01/%.h: ${MYLIB}/%.tex
 	${top_srcdir}/tcode $< $@
 
-%.h: ${PROBDIST}/%.tex
+TestU01/%.h: ${PROBDIST}/%.tex
 	${top_srcdir}/tcode $< $@
 
-%.h: ${TESTU01}/%.tex
+TestU01/%.h: ${TESTU01}/%.tex
 	${top_srcdir}/tcode $< $@
 
 include Makefile.def

@@ -1,6 +1,6 @@
-#include "unif01.h"
-#include "usoft.h"
-#include "scatter.h"
+#include "TestU01/unif01.h"
+#include "TestU01/usoft.h"
+#include "TestU01/scatter.h"
 
 int Proj[] = { 1, 3 };
 long LacI[] = { 1, 2, 6};

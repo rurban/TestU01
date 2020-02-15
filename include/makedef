@@ -1,6 +1,7 @@
 #!/bin/sh
 
 rm -f Makefile.def
+test -d TestU01 || mkdir TestU01
 
 echo 'docdir = ${prefix}/share/TestU01/doc' >> Makefile.def
 echo 'MYLIB = ${top_srcdir}/mylib' >> Makefile.def
@@ -29,7 +30,7 @@ function writevar() {
    TEX=""
    SOURCES=""
    for mod in $1; do
-      HEADERS="$HEADERS ${mod}.h"
+      HEADERS="$HEADERS TestU01/${mod}.h"
       SOURCES="$SOURCES ${mod}.c"
       TEX="$TEX \$($2)/${mod}.tex"
    done
